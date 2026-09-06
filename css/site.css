@@ -322,3 +322,14 @@ body.home header.site:not(.scrolled) .burger span{background:var(--ink)}
   .hero-light .hero-copy{max-width:100%}
   .hero-light .inner{position:relative;z-index:2}
 }
+
+/* ===== fix: dropdown links must stay dark on their white panel (override the light nav-link colour) ===== */
+.nav-links .has-drop .drop a{color:var(--slate)}
+.nav-links .has-drop .drop a:hover{color:var(--blue);background:var(--surface2)}
+
+/* ===== single-line headings on desktop ===== */
+.hline{max-width:none!important;white-space:nowrap}
+.split.ov{grid-template-columns:1.32fr .68fr}
+.split .ov-h{font-size:clamp(1.6rem,2.5vw,2.15rem)}
+@media(max-width:980px){.split.ov{grid-template-columns:1fr}}
+@media(max-width:860px){.hline{white-space:normal}}
