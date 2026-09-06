@@ -70,18 +70,19 @@
   if(dock && window.matchMedia && window.matchMedia('(hover:hover)').matches){
     var ditems=[].slice.call(dock.querySelectorAll('.dock-item'));
     var dcap=document.querySelector('.dock-cap');
-    var MX=1.75,RG=130,LFT=20;
+    var MX=1.6,RG=170,LFT=26;
     dock.addEventListener('mousemove',function(e){
       ditems.forEach(function(el){
         var r=el.getBoundingClientRect(),c=r.left+r.width/2,d=Math.abs(e.clientX-c);
         var f=Math.exp(-(d*d)/(2*(RG/2)*(RG/2))),s=1+(MX-1)*f;
         el.style.transform='translateY(-'+(LFT*(s-1)).toFixed(1)+'px) scale('+s.toFixed(3)+')';
-        el.classList.toggle('on',f>0.6);
-        if(f>0.6&&dcap){dcap.innerHTML=el.getAttribute('data-name')+' &nbsp;<span>'+el.getAttribute('data-desc')+'</span>';}
+        var tip=el.querySelector('.tip'); if(tip)tip.style.transform='translateX(-50%) scale('+(1/s).toFixed(3)+')';
+        el.classList.toggle('on',f>0.62);
+        if(f>0.62&&dcap){dcap.innerHTML=el.getAttribute('data-name')+' &nbsp;<span>'+el.getAttribute('data-desc')+'</span>';}
       });
     });
     dock.addEventListener('mouseleave',function(){
-      ditems.forEach(function(el){el.style.transform='';el.classList.remove('on');});
+      ditems.forEach(function(el){el.style.transform='';el.classList.remove('on');var t=el.querySelector('.tip');if(t)t.style.transform='translateX(-50%) scale(1)';});
       if(dcap)dcap.textContent='Hover a service to explore';
     });
   }
