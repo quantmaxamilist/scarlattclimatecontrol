@@ -372,11 +372,12 @@ body.home header.site:not(.scrolled) .burger span{background:var(--ink)}
 .dock-cap{margin-top:24px;text-align:center;font-family:'Sora';font-weight:600;color:var(--ink);font-size:1.08rem;min-height:1.3em}
 .dock-cap span{color:var(--slate);font-weight:400;font-size:.96rem}
 @media(hover:none){
-  .dock-wrap{overflow-x:auto;overflow-y:hidden;padding:22px 6px 8px;scrollbar-width:none}
-  .dock-wrap::-webkit-scrollbar{display:none}
-  .dock{justify-content:flex-start;gap:14px}
-  .dock-item{width:74px;height:74px}
+  .dock-wrap{overflow-x:auto;overflow-y:hidden;padding:20px 6px 6px;scrollbar-width:none;-ms-overflow-style:none}
+  .dock-wrap::-webkit-scrollbar{width:0;height:0;display:none}
+  .dock{justify-content:flex-start;align-items:flex-start;gap:14px;padding:14px 16px 30px}
+  .dock-item{width:74px;height:auto}
+  .dock-item .bub{width:74px;height:74px}
   .dock-item .tip{display:none}
-  .dock-lab{display:block;margin-top:8px;text-align:center;font-family:'Sora';font-weight:600;font-size:.66rem;letter-spacing:.02em;color:var(--slate);line-height:1.15}
+  .dock-lab{display:block;margin-top:9px;text-align:center;font-family:'Sora';font-weight:600;font-size:.66rem;letter-spacing:.02em;color:var(--slate);line-height:1.18}
   .dock-cap{display:none}
 }
