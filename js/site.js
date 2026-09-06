@@ -28,4 +28,40 @@
       vio.observe(vid);
     }
   }
+
+  /* animated thermostat dial (home hero) */
+  var stage=document.querySelector('.thermo-stage');
+  if(stage){
+    var NS='http://www.w3.org/2000/svg';
+    var svg=stage.querySelector('.dial-svg'),
+        ticksG=stage.querySelector('.ticks'),
+        arcFill=stage.querySelector('.arc-fill'),
+        knob=stage.querySelector('.knob'),
+        tval=stage.querySelector('.tval'),
+        tstate=stage.querySelector('.tstate'),
+        glow=stage.querySelector('.glow');
+    var cx=120,cy=120,r=92,start=135,sweep=270;
+    var toXY=function(ang,rad){var a=ang*Math.PI/180;return [cx+rad*Math.cos(a),cy+rad*Math.sin(a)];};
+    var i,N=28;
+    for(i=0;i<N;i++){var ang=start+(i/(N-1))*sweep,p1=toXY(ang,66),p2=toXY(ang,75),ln=document.createElementNS(NS,'line');
+      ln.setAttribute('x1',p1[0].toFixed(1));ln.setAttribute('y1',p1[1].toFixed(1));ln.setAttribute('x2',p2[0].toFixed(1));ln.setAttribute('y2',p2[1].toFixed(1));ticksG.appendChild(ln);}
+    var len=433.5; try{len=arcFill.getTotalLength();}catch(e){}
+    arcFill.style.strokeDasharray=len;
+    var lerp=function(a,b,t){return a+(b-a)*t;};
+    function setF(f){
+      arcFill.style.strokeDashoffset=(len*(1-f)).toFixed(1);
+      var ang=start+f*sweep,k=toXY(ang,r);
+      knob.setAttribute('cx',k[0].toFixed(1));knob.setAttribute('cy',k[1].toFixed(1));
+      if(tval)tval.textContent=Math.round(lerp(16,24,f));
+      if(tstate)tstate.textContent=f<0.42?'COOLING':(f>0.6?'HEATING':'COMFORT');
+      if(glow){var cr=Math.round(lerp(47,216,f)),cg=Math.round(lerp(189,35,f)),cb=Math.round(lerp(246,42,f));
+        glow.style.background='radial-gradient(closest-side,rgba('+cr+','+cg+','+cb+',.5),transparent 70%)';}
+    }
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(reduce){setF(0.55);}
+    else{
+      var t0=null,dur=7200;
+      (function loop(ts){if(!t0)t0=ts;var p=((ts-t0)%dur)/dur;var e=0.5-0.5*Math.cos(p*2*Math.PI);setF(0.16+e*0.76);requestAnimationFrame(loop);})(performance.now());
+    }
+  }
 })();

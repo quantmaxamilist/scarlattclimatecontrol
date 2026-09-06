@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
-</head><body>
+</head><body class="home">
 <header class="site"><div class="bar">
   <a class="brand" href="index.html"><img src="assets/logo.svg" alt="Scarlatt Climate Control"></a>
   <nav class="nav-links">
@@ -26,12 +26,25 @@
   <a href="contact.html">Contact</a>
   <a class="btn btn-grad" href="contact.html">Book a free survey</a>
 </aside>
-<section class="hero">
+<section class="hero hero-light">
   <div class="hero-media">
-    <video class="hero-vid" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg"><source src="assets/hero.mp4" type="video/mp4"></video>
-    <div class="hero-fallback"></div><div class="hero-scrim"></div>
+    <span class="hero-glow cool"></span><span class="hero-glow warm"></span>
+    <div class="thermo-stage" aria-hidden="true">
+      <div class="dial">
+        <span class="glow"></span>
+        <svg class="dial-svg" viewBox="0 0 240 240">
+          <defs><linearGradient id="arcg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fbdf6"/><stop offset=".5" stop-color="#7a56b0"/><stop offset="1" stop-color="#d8232a"/></linearGradient></defs>
+          <g class="ticks"></g>
+          <path class="arc-track" d="M54.95 185.05 A92 92 0 1 1 185.05 185.05"/>
+          <path class="arc-fill" d="M54.95 185.05 A92 92 0 1 1 185.05 185.05"/>
+          <circle class="knob" cx="54.95" cy="185.05" r="9"/>
+        </svg>
+        <div class="dial-center"><div class="temp"><span class="tval">21</span><span class="tdeg">°</span></div><div class="tstate">COMFORT</div></div>
+      </div>
+    </div>
   </div>
   <div class="inner">
+    <div class="hero-copy">
     <span class="badge"><span class="hotcold"></span>Heating · Cooling · Renewables · UK</span>
     <h1>Complete <span class="warm">climate control</span> for your home.</h1>
     <p class="sub">Boilers, air conditioning, heat pumps, solar and battery storage — designed, installed and maintained by one trusted team.</p>
@@ -40,6 +53,7 @@
       <span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Free, no-obligation survey</span>
       <span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 17.5a8 8 0 1 1 11 0"/><path d="M12 13l3.5-3.5"/><circle cx="12" cy="13" r="1.4" fill="currentColor" stroke="none"/></svg> A-rated, efficient systems</span>
       <span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 20H17M8.5 20c2-1.2 2.2-3.8 2.2-6 0-3 1-6 4-6 1.4 0 2.3.8 2.3.8M7.5 12.5H15"/></svg> Grants available (BUS)</span>
+    </div>
     </div>
   </div>
   <div class="scroll-cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
