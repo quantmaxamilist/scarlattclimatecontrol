@@ -64,4 +64,25 @@
       (function loop(ts){if(!t0)t0=ts;var p=((ts-t0)%dur)/dur;var e=0.5-0.5*Math.cos(p*2*Math.PI);setF(0.16+e*0.76);requestAnimationFrame(loop);})(performance.now());
     }
   }
+
+  /* service dock magnification (macOS-style) */
+  var dock=document.querySelector('.dock');
+  if(dock && window.matchMedia && window.matchMedia('(hover:hover)').matches){
+    var ditems=[].slice.call(dock.querySelectorAll('.dock-item'));
+    var dcap=document.querySelector('.dock-cap');
+    var MX=1.75,RG=130,LFT=20;
+    dock.addEventListener('mousemove',function(e){
+      ditems.forEach(function(el){
+        var r=el.getBoundingClientRect(),c=r.left+r.width/2,d=Math.abs(e.clientX-c);
+        var f=Math.exp(-(d*d)/(2*(RG/2)*(RG/2))),s=1+(MX-1)*f;
+        el.style.transform='translateY(-'+(LFT*(s-1)).toFixed(1)+'px) scale('+s.toFixed(3)+')';
+        el.classList.toggle('on',f>0.6);
+        if(f>0.6&&dcap){dcap.innerHTML=el.getAttribute('data-name')+' &nbsp;<span>'+el.getAttribute('data-desc')+'</span>';}
+      });
+    });
+    dock.addEventListener('mouseleave',function(){
+      ditems.forEach(function(el){el.style.transform='';el.classList.remove('on');});
+      if(dcap)dcap.textContent='Hover a service to explore';
+    });
+  }
 })();
