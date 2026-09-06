@@ -333,3 +333,24 @@ body.home header.site:not(.scrolled) .burger span{background:var(--ink)}
 .split .ov-h{font-size:clamp(1.6rem,2.5vw,2.15rem)}
 @media(max-width:980px){.split.ov{grid-template-columns:1fr}}
 @media(max-width:860px){.hline{white-space:normal}}
+
+/* ===== image service cards (hover-blur reveal) ===== */
+.svc-img{padding:0;border:0;min-height:340px;display:flex;flex-direction:column;color:#fff;overflow:hidden;box-shadow:var(--sh-lg);background:var(--navy)}
+.svc-img::before{display:none}
+.svc-img .svc-bg{position:absolute;inset:0;z-index:0;background:var(--img) center/cover no-repeat;transform:scale(1.03);transition:filter .55s var(--ease),transform .6s var(--ease)}
+.svc-img .svc-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(9,16,38,.12),rgba(9,16,38,.32) 42%,rgba(9,16,38,.86));transition:.4s var(--ease)}
+.svc-img .svc-tint{position:absolute;inset:0;z-index:1;opacity:0;background:linear-gradient(135deg,rgba(31,111,224,.55),rgba(15,26,61,.30) 46%,rgba(216,35,42,.5));transition:opacity .45s var(--ease)}
+.svc-img .svc-body{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;flex:1;padding:24px}
+.svc-img .ic{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);margin:0 0 auto}
+.svc-img .ic svg{width:26px;height:26px;color:#fff}
+.svc-img:hover .ic{background:rgba(255,255,255,.16)}
+.svc-img .svc-txt{margin-top:16px}
+.svc-img h3{color:#fff;margin-bottom:8px;text-shadow:0 1px 14px rgba(9,16,38,.5)}
+.svc-img p{color:rgba(255,255,255,.92);font-size:.96rem;text-shadow:0 1px 12px rgba(9,16,38,.55)}
+.svc-img .go{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-family:'Sora';font-weight:600;font-size:.9rem;color:#fff;transition:.2s}
+.svc-img .go svg{width:16px;height:16px;transition:.2s}
+.svc-img:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
+.svc-img:hover .svc-bg{filter:blur(5px) saturate(1.05);transform:scale(1.11)}
+.svc-img:hover .svc-tint{opacity:1}
+.svc-img:hover .go{color:var(--cyan)}
+.svc-img:hover .go svg{transform:translateX(5px)}
